@@ -1,0 +1,12 @@
+services:
+  liveness-api:
+    build:
+      context: .
+    platform: linux/arm64
+    image: liveness-api:latest
+    container_name: liveness-api
+    restart: unless-stopped
+    ports:
+      # Bind only to localhost so the API is reachable from other
+      # processes on this EC2 instance but not from the public internet.
+      - "127.0.0.1:9091:9091"
